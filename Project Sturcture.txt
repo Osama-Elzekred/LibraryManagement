@@ -1,0 +1,175 @@
+﻿>Library management system
+        
+
+
+        >Home: 
+                ----
+        >Books:
+                >Nav Bar (in all pages except the log in , sign up)
+                        >Home →  readonly or auth(the user can not access the page content unless he logged in or sing up)
+                        >Study Groups →  admin → the one who created the study group
+                                                → Users 
+                                                → description
+                                                → start date
+                                                → Realtime (chat)
+                        >profile                
+                                                
+                        >Log in  ….. Options  Username(Or gmail , facebook , github), Password 
+                        >Log out
+                        >sign up  → Username 
+                                        >email address
+                                        >password1
+                                        >confirm password
+                
+                >section →  card →  book img
+                                        > description
+                                        >borrow (if the book is borrowed then this button is disapled)
+                                        >author info
+                
+                
+                >footer 
+
+
+
+
+        >Contact Us (User can send email to the admin User’s gmail account):
+                >nav>---
+                >section>
+                        → name(default user name)
+                        → email
+                        → subject
+                        → massage
+                >footer>----
+        >Services:
+                >nav>--
+                >section>
+                        → some information about the 
+                >footer>--
+                
+        >Log in :
+                >user Name Or(gmail , facebook, github)
+                >password
+                >sign up → sign up
+        >log out: go to the Home page as guest
+
+
+        >Sing up:
+                >User Name
+                >email
+                >password 
+                >confirm password
+
+
+
+
+        >Profile:
+                >Nav bar > ------
+                >section →  user img
+                                >userName
+                                >email
+                                >phone num
+                                >first name
+                                >last name
+                                >button →  update
+                                >button → change password
+                >section →  user Borrowed books →   img
+                                                        >....
+                                                        >borrowing date
+                                                        >return to the shelf button(instead of borrow)
+
+
+                >footer >----
+        >Update:
+                >nav bar>---
+                >section → user personal data
+                        +>save 
+                        +>cancel ( return him back to the profile page)
+                >footer>---
+
+
+
+
+
+
+        >Change Password:
+                >nav bar>---
+                >section → old password 
+                 → new password 
+                 → confirm new password
+                >footer>---
+
+
+
+
+
+
+>admin
+        
+        
+        >Admin page 
+                → nav → ------
+                → section → data(admin selected option)
+                → side bar → borrowed books 
+                          → all books (home page)
+                          → ---
+                          → update button + delete button
+                          → all users 
+                          → add books
+                          → search student by id 
+                
+                        
+                >footer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>Models
+
+        >book   → Name
+                → description
+                → borrow Boolean
+                → borrowing date (null = 1)
+                → return date (null = 1)
+                → author
+                → user(many to one relation with user) >>(the user who has borrowed that book)
+
+
+        >profile → user(relation)
+                 → phone number
+                 → img
+
+
+>> signals
+        → create profile when a new user sing up
