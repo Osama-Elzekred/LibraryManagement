@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block pagetitle %}Register{% endblock pagetitle %}
+{% block content %}
+    <form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="Register">
+</form>
+{% endblock content %}
+{% block title %}
+    Register
+{% endblock title %}
+

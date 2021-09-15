@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Online Library</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'accounts/img/favicon.ico' %} " type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'accounts/img/icon.png' %}">
+
+    <!-- ************************* CSS Files ************************* -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.css' %}">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'accounts/css/vendor.css' %}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'accounts/css/main.css' %}">
+</head>
+
+
+
+<body>
+
+
+
+    
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+        <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 text-center mx-auto" style="display:block;width=2em;">
+                        <h1 class="page-title">
+                            {% block pagetitle %}
+                            {% endblock pagetitle %}
+                        </h1>
+                        <ul class="breadcrumb">
+
+                            <!-- Link Home Hereee -->
+                            <li><a href="#">Home</a></li>
+                            <li class="current">
+                                <span>                            
+                                    {% block title %}
+                                    {% endblock title %}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner pt--75 pb--80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            {% block content %}
+                            {% endblock content %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+
+        
+
+</body>
+
+    <!-- Main Wrapper End -->
+
+    <!-- ************************* JS Files ************************* -->
+
+    <!-- jQuery JS -->
+    <script src="{%static 'accounts/js/vendor.js'%}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'accounts/js/main.js' %}"></script>
+    <!--js-->
+    <script>
+        e = document.getElementsByTagName('small');
+        for(var i = 0 ; i < e.length; i++){
+            e[i].innerText = " ";
+        }
+        e1 = document.getElementsByClassName("alert")[0];
+        document.getElementsByClassName("close")[0].addEventListener("click" , () =>{
+                e1.style.display = 'none';
+            });
+
+    </script>
+</html>

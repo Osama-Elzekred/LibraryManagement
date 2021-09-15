@@ -169,6 +169,8 @@
         >profile → user(relation)
                  → phone number
                  → img
+                 → birthday 
+                 → gender
 
 
 >> signals
