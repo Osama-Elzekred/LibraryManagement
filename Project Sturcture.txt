@@ -157,13 +157,19 @@
 
 >>Models
 
-        >book   → Name
+        >book   → title
                 → description
-                → borrow Boolean
-                → borrowing date (null = 1)
-                → return date (null = 1)
                 → author
-                → user(many to one relation with user) >>(the user who has borrowed that book)
+                → Total Number of Copies
+                → avaliable Number of Copies
+                → user(many to many relationships) >> (one user can borrow one or more than one book and book can be borrowed by many users as it has many copies)
+
+
+        >borrow → borrowing date (null = 1)
+                → return date (null = 1)
+                → user(one to many relationship) >> (the user who has borrowed that book)
+                → book(one to many relationship) 
+
 
 
         >profile → user(relation)
