@@ -1,0 +1,54 @@
+[33mcommit 00a151193d5500ff3699dcc9bb80f156e4a355fb[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Sat Sep 18 14:36:42 2021 +0200
+
+    adding some test data to Book model
+
+[33mcommit c535a2eb3759d2badbb9d79c91246acfd567a206[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 47cc62d 730df77
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Wed Sep 15 18:06:37 2021 +0200
+
+    Merge branch 'main' of https://github.com/cod3father/LibraryManagement
+
+[33mcommit 47cc62d702917c289415369a20cdbd7c15487b7d[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Wed Sep 15 18:05:14 2021 +0200
+
+    remove unecessary dir
+
+[33mcommit 730df77aa2e44133df1f72bb7bff0d4b8fe9a5ec[m
+Author: Mostafa Mahmoud Fathi Abas Allam <56680605+MostafaAllam-start@users.noreply.github.com>
+Date:   Wed Sep 15 17:48:18 2021 +0200
+
+    Delete .vscode directory
+
+[33mcommit 0c637e48b79577bc5bae07d622b50de58350225c[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Wed Sep 15 17:44:29 2021 +0200
+
+    Creating the Authentication system Form our Library
+
+[33mcommit 2476884084797ce095e27b6efd0821d7c7c533dd[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Tue Sep 14 02:27:35 2021 +0200
+
+    Adding the Admin App
+
+[33mcommit 5114db96041bd7b5b11c926fbbbdc006be626889[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Mon Sep 13 23:27:34 2021 +0200
+
+    Adding the project structure file
+
+[33mcommit 9fbee83ed873610beebfe3463e5001e3cf395cd0[m
+Author: Mostafa Allam <mostafaallam602@gmail.com>
+Date:   Mon Sep 13 22:58:05 2021 +0200
+
+    Starting our project & Adding the main Project apps
+
+[33mcommit 1d84f59caba86a4725e758bd67ba7f552d9c1efe[m
+Author: Mostafa Mahmoud Fathi Abas Allam <56680605+MostafaAllam-start@users.noreply.github.com>
+Date:   Mon Sep 13 18:50:27 2021 +0200
+
+    Initial commit

@@ -7,6 +7,7 @@ from django.utils import timezone
 class Book(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
+    category = models.CharField(max_length=150)
     author = models.CharField(max_length=150)
     user = models.ManyToManyField(User, through='Borrowing')
     total_number_of_copies = models.IntegerField(default=0)
