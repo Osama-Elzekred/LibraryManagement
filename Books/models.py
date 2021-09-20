@@ -17,7 +17,9 @@ class Category(models.Model):
     # @property
     # def slug(self):
     #     return slugify(self.title)
-    
+class Author(models.Model):
+    name = models.CharField(max_length=200)
+        
 class Book(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
@@ -27,7 +29,7 @@ class Book(models.Model):
     # I decided to use slug to get the search for an obj in database but it has to be a field in the book model 
     slug = models.SlugField(max_length = 150, blank=True, null=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    author = models.CharField(max_length=150)
+    author = models.ForeignKey(Author,on_delete=models.CASCADE)
     user = models.ManyToManyField(User, through='Borrowing')
     total_number_of_copies = models.IntegerField(default=0)
     available_number_of_copies = models.IntegerField(null=True, blank=True) 

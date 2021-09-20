@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 #this signal will be emitted when the an object of model Book is created (not created in database as it pre_save will be sent at the beginning of the save method)
 #if the admin did not add the available number of copies it will be by default set to be equal to the total number of copies
 @receiver(pre_save, sender=Book)
-def addnig_defaut_fields(sender, instance, **kwargs):
+def addnig_defaut_fields(sender, instance, *args, **kwargs):
     if not instance.available_number_of_copies:
         instance.available_number_of_copies = instance.total_number_of_copies
 
@@ -27,5 +27,5 @@ def update_available_number_of_copies(*args , **kwargs):
         kwargs['instance'].available_number_of_copies += 1
 
 @receiver(pre_save, sender=Category)
-def addnig_defaut_category_fields(sender, instance,*args, **kwargs):
+def addnig_defaut_category_fields(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.title)
