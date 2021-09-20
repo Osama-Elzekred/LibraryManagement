@@ -24,8 +24,8 @@ class BookDeleteView(DeleteView):
     success_url = "/"
         
     def get_object (slef):
-        id_ = slef.kwargs.get('id')
-        return get_object_or_404(Category, id=id_)
+        slug_ = slef.kwargs.get('slug')
+        return get_object_or_404(Category, id=slug_)
 
 class BookUpdateView(UpdateView):
     model = Book
@@ -49,6 +49,6 @@ class CategoryDeleteView(DeleteView):
         return reverse('Books:category_list')
 
     def get_object (slef):
-        id_ = slef.kwargs.get('id')
-        return get_object_or_404(Category, id=id_)
+        slug_ = slef.kwargs.get('slug')
+        return get_object_or_404(Category, slug=slug_)
 

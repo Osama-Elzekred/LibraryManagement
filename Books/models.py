@@ -7,16 +7,16 @@ from django.urls import reverse
 
 class Category(models.Model):
     title = models.CharField(max_length=150)
-
+    slug = models.SlugField(max_length=150,blank=True,null=True)
     def __str__(self):
         return self.title
     
     def get_absolute_url(self):
         return reverse('Books:category_list')
         
-    @property
-    def slug(self):
-        return slugify(self.title)
+    # @property
+    # def slug(self):
+    #     return slugify(self.title)
     
 class Book(models.Model):
     title = models.CharField(max_length=150)
@@ -24,7 +24,8 @@ class Book(models.Model):
 
     # I comment it just to save database resources instead of creating a column in the database for slug
     # I prefered to make it as a instance property
-    # slug = models.SlugField(max_length = 150, blank=True, null=True)
+    # I decided to use slug to get the search for an obj in database but it has to be a field in the book model 
+    slug = models.SlugField(max_length = 150, blank=True, null=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     author = models.CharField(max_length=150)
     user = models.ManyToManyField(User, through='Borrowing')
@@ -38,9 +39,9 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse('Books:home')
 
-    @property
-    def slug(self):
-        return slugify(self.title)
+    # @property
+    # def slug(self):
+    #     return slugify(self.title)
 
 class Borrowing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
