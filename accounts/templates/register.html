@@ -1,13 +1,15 @@
 {% extends "base_generic.html" %}
-{% load bootstrap4 %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block pagetitle %}Register{% endblock pagetitle %}
 {% block content %}
-    <form method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="Register">
-</form>
+    <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% comment %} {{ user_form|crispy }}
+        {{ profile_form|crispy }} {% endcomment %}
+        {{ form|crispy }}  
+        <input style="display:block;" type="submit" class="btn btn-primary  mt-3 mb-3 mx-auto" value="Register">
+    </form>
 {% endblock content %}
 {% block title %}
     Register
