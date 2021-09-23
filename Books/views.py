@@ -1,5 +1,5 @@
 from .forms import BookCreateForm, CategoryCreateForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Book, Category
 from django.views.generic import ListView
@@ -10,7 +10,7 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'Books'
     ordering = ['-created_at']
-
+    
 class BookCreateView(CreateView):
     model  = Book
     form_class = BookCreateForm
@@ -51,4 +51,7 @@ class CategoryDeleteView(DeleteView):
     def get_object (slef):
         slug_ = slef.kwargs.get('slug')
         return get_object_or_404(Category, slug=slug_)
+
+def Profile_admin(request):
+    return render(request, "Books/admin_dashboard.html")
 

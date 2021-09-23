@@ -1,3 +1,9 @@
+{% extends 'Books/base.html' %}
+
+
+{% load static %}
+{% block part1 %}
+
 <!DOCTYPE html>
 
 <html>
@@ -10,9 +16,28 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        {% for i in categories %}
-            <h1>{{ i }}</h1>
-        {% endfor %}
-        <script src="" async defer></script>
+
+        <div class="container">
+            <table class="table table-hover">
+              <thead>
+                    <tr>
+                         <th> <h2> Catergory </h2> </th>
+                    </tr>  
+              </thead>    
+
+              <tbody>
+                    <tr>
+                    <td>
+
+                            {% for i in categories %}
+                                <h1>{{ i }}</h1>
+                            {% endfor %}
+                            <script src="" async defer></script>
+                    </td>
+                    </tr>
+              </tbody>
+            </table>            
+        {% endblock %}
+
     </body>
 </html>

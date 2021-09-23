@@ -1,3 +1,11 @@
+
+{% extends 'Books/base.html' %}
+
+
+{% load static %}
+{% block part1 %}
+
+
 <!DOCTYPE html>
 {%load bootstrap4%}
 <html>
@@ -8,6 +16,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+                body {
+        text-align: center;
+        
+            }
+        form {
+        display: inline-block;
+        }
+        </style>
     </head>
     <body>
         <form method="post" class='form'>
@@ -16,5 +33,8 @@
             <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="Create">
         </form>
         <script src="" async defer></script>
+
+        {% endblock %}
+
     </body>
 </html>

@@ -7,6 +7,7 @@
 {% block part1 %}
 
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -17,316 +18,189 @@
     
     </head>
 
-
     <body>
-<!--         {% if Books|length == 0 %}
-            <h1 class="mx-auto" style="color: red; text-align: center;">There is no book available now visit us later</h1>
-        {% else %}
-            {% for book in Books %}
-                <h1>{{book.title}}</h1>
-            {% endfor %}
-        {% endif %}
-        <script src="" async defer></script> -->
-
-
-            <!-- Slider area Start -->
-            <section class="homepage-slider mb--11pt5">
-                <div class="element-carousel slick-right-bottom" data-slick-options='{
-                    "slidesToShow": 1, 
-                    "dots": true
-                }'>
-                    <div class="item">
-                        <div class="single-slide d-flex align-items-center bg-image"
-                            data-bg-image="{% static 'books/images/slider-bg-01.jpg' %}">
-                            
-                            <div class="container">
-                                <div class="row align-items-center g-0 w-100">
-                                    <div class="col-lg-6 col-md-8">
-                                        <div class="slider-content">
-                                            <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
-                                                <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">AMAZING PRODUCT!</h3>
-                                                <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">BACKPACK</h1>
-                                                <p class="font-weight-light" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">Neque porro quisquam est, qui
-                                                    dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                                                    quia non numquam eius modi
-                                                    tempora Neque porro quisquam est, qui dolorem ipsum</p>
-                                            </div>
-
-
-                                            <!-- Link Shop -->
-                                            <div class="slider-content__btn">
-                                                <a href="#" class="btn-link" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".6s">Shop Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-lg-4 offset-lg-2 col-md-4">
-                                        <figure class="slider-image d-none d-md-block">
-                                            <img src="{% static 'books/images/slider-image-01.png' %}" alt="Slider Image">
-                                            
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="single-slide d-flex align-items-center bg-image"
-                            data-bg-image="{% static 'books/images/slider-bg-01.jpg' %}">
-                            
-                            <div class="container">
-                                <div class="row align-items-center g-0 w-100">
-                                    <div class="col-lg-6 col-md-8">
-                                        <div class="slider-content py-0">
-                                            <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
-                                                <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">AMAZING PRODUCT!</h3>
-                                                <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">BACKPACK</h1>
-                                                <p class="font-weight-light" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".3s">Neque porro quisquam est, qui
-                                                    dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                                                    quia non numquam eius modi
-                                                    tempora Neque porro quisquam est, qui dolorem ipsum</p>
-                                            </div>
-
-
-
-
-
-
-
-                                                <!-- Link Shop -->
-                                            <div class="slider-content__btn">
-                                                <a href="#" class="btn-link" data-animation="fadeInUp"
-                                                    data-duration=".3s" data-delay=".6s">Shop Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 offset-lg-2 col-md-4">
-                                        <figure class="slider-image d-none d-md-block">
-                                            <img src="{% static 'books/images/slider-image-02.png' %}" alt="Slider Image">
-                                            
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Slider area End -->
-
-
-            
+        
     <!-- Main Wrapper Start -->
     <div class="wrapper">
-        
+
+        <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Admin Dashboard </h1>
+                        <ul class="breadcrumb">
+                            <li><a href="/home">Home</a></li>
+                            <li class="current"><span>My Account</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
 
         <!-- Main Content Wrapper Start -->
-        <div  class="main-content-wrapper">
-            <div class="shop-page-wrapper ptb--80">
+        <div class="main-content-wrapper">
+            <div class="page-content-inner ptb--80 ptb-md--60 pb-sm--55">
                 <div class="container">
                     <div class="row">
-
-                        <!-- Books -->
-                        <div class="col-xl-9 col-lg-8 order-lg-2 mb-md--50">
-                            <div class="shop-toolbar mb--50">
-                                <div class="row align-items-center">
-                                    <div class="col-md-5 mb-sm--30 mb-xs--10">
-                                        <div class="shop-toolbar__left">
-                                            <div class="product-ordering">
-                                                <select class="product-ordering__select nice-select">
-                                                    <option value="0">Default Sorting</option>
-                                                    <option value="1">Relevance</option>
-                                                    <option value="2">Name, A to Z</option>
-                                                    <option value="3">Name, Z to A</option>
-                                                    <option value="4">Price, low to high</option>
-                                                    <option value="5">Price, high to low</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="shop-toolbar__right">
-                                            <p class="product-pages">Showing Result  08 Among  72</p>
-                                            <div class="product-view-mode ml--50 ml-xs--0">
-                                                <a class="active" href="#" data-target="grid">
-                                                    <img src="{% static 'books/images/grid.png' %}" alt="Grid">
-                                                    
-                                                </a>
-                                                <a href="#" data-target="list">
-                                                    <img src="{% static 'books/images/list.png' %}" alt="Grid">
-                                                    
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-12">
+                            <div class="user-dashboard-tab flex-column flex-md-row">
+                                <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
+                                    <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Create Category</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Create Book</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Category List</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#accountdetails" aria-controls="accountdetails" aria-selected="true">Account Details</button>
+                               
+                                
+                                
+                                        <!-- Logout link -->
+                                    <a class="nav-link" href="/accounts/login">Logout</a>
                                 </div>
-                            </div>
-                            <div class="shop-products">
-                                <div class="row">
-                                    <div class="col-xl-4 col-sm-6 mb--50">
-                                        <div class="payne-product">
-                                            <div class="product__inner">
-                                                <div class="product__image">
-                                                    <figure class="product__image--holder">
-                                                        <img src=" {% static 'books/images/product-03-270x300.jpg' %}" alt="Product">
-                                                       
-                                                    </figure>
-                                                    <a href="product-details.html" class="product__overlay"></a>
-                                                    <div class="product__action">
-                                                        <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn">
-                                                            <i class="fa fa-eye"></i>
-                                                            <span class="sr-only">Quick View</span>
-                                                        </a>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="fa fa-heart-o"></i>
-                                                            <span class="sr-only">Add to wishlist</span>
-                                                        </a>
-                                                        <a href="compare.html" class="action-btn">
-                                                            <i class="fa fa-repeat"></i>
-                                                            <span class="sr-only">Add To Compare</span>
-                                                        </a>
-                                                        <a href="cart.html" class="action-btn">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                            <span class="sr-only">Add To Cart</span>
-                                                        </a>
+                                <div class="user-dashboard-tab__content tab-content">
+                                    <div class="tab-pane fade show active" id="dashboard">
+                                        <p>Hello <strong>John</strong> (not <strong>John</strong>? <a href="/accounts/login">Log out</a>)</p>
+                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a> and <a href="">edit your password and account details</a>.</p>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="orders">
+                                     <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Create Categroy</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/category/create"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                     </div>  
+                                        
+                                    </div>
+
+
+
+
+
+                                    <div class="tab-pane fade" id="downloads">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Create Book</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/book/create"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        
+                                    </div>
+
+
+
+
+
+
+                                    <div class="tab-pane fade" id="addresses">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">Categroy List </h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/category/list"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                       
+                                        
+                                    </div>
+
+
+
+
+
+
+
+                    
+                                    <div class="tab-pane fade" id="accountdetails">
+                                        <form action="#" class="form form--account">
+                                            <div class="row mb--20">
+                                                <div class="col-md-6 mb-sm--20">
+                                                    <div class="form__group">
+                                                        <label class="form__label" for="f_name">First name <span class="required">*</span></label>
+                                                        <input type="text" name="f_name" id="f_name" class="form__input">
                                                     </div>
                                                 </div>
-                                                <div class="product__info">
-                                                    <div class="product__info--left">
-                                                        <h3 class="product__title">
-                                                            <a href="product-details.html">Lexbaro Begadi</a>
-                                                        </h3>
-                                                        <div class="product__price">
-                                                            <span class="money">132.00</span>
-                                                            <span class="sign">$</span>
+                                                <div class="col-md-6">
+                                                    <div class="form__group">
+                                                        <label class="form__label" for="l_name">Last name <span class="required">*</span></label>
+                                                        <input type="text" name="l_name" id="l_name" class="form__input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb--20">
+                                                <div class="col-12">
+                                                    <div class="form__group">
+                                                        <label class="form__label" for="d_name">Display name <span class="required">*</span></label>
+                                                        <input type="text" name="d_name" id="d_name" class="form__input">
+                                                        <span class="form__notes"><em>This will be how your name will be displayed in the account section and in reviews</em></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb--20">
+                                                <div class="col-12">
+                                                    <div class="form__group">
+                                                        <label class="form__label" for="email">Email Address <span class="required">*</span></label>
+                                                        <input type="email" name="email" id="email" class="form__input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <fieldset class="form__fieldset mb--20">
+                                                <legend class="form__legend">Password change</legend>
+                                                <div class="row mb--20">
+                                                    <div class="col-12">
+                                                        <div class="form__group">
+                                                            <label class="form__label" for="cur_pass">Current password (leave blank to leave unchanged)</label>
+                                                            <input type="password" name="cur_pass" id="cur_pass" class="form__input">
                                                         </div>
                                                     </div>
-                                                    <div class="product__info--right">
-                                                        <span class="product__rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
+                                                </div>
+                                                <div class="row mb--20">
+                                                    <div class="col-12">
+                                                        <div class="form__group">
+                                                            <label class="form__label" for="new_pass">New password (leave blank to leave unchanged)</label>
+                                                            <input type="password" name="new_pass" id="new_pass" class="form__input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form__group">
+                                                            <label class="form__label" for="conf_new_pass">Confirm new password</label>
+                                                            <input type="password" name="conf_new_pass" id="conf_new_pass" class="form__input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form__group">
+                                                        <input type="submit" value="Save Changes" class="btn">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="payne-product-list">
-                                            <div class="product__inner">
-                                                <figure class="product__image">
-                                                    <a href="product-details.html" class="d-block">
-                                                        <img src="assets/img/products/product-03-270x300.jpg" alt="Products">
-                                                    </a>
-                                                    <div class="product__thumbnail-action">
-                                                        <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn quick-view">
-                                                            <i class="fa fa-eye"></i>
-                                                            <span class="sr-only">Quick View</span>
-                                                        </a>
-                                                    </div>
-                                                </figure>
-                                                <div class="product__info">
-                                                    <h3 class="product__title">
-                                                        <a href="product-details.html">Lexbaro Begadi</a>
-                                                    </h3>
-                                                    <div class="product__price">
-                                                        <span class="money">132.00</span>
-                                                        <span class="sign">$</span>
-                                                    </div>
-                                                    <span class="product__rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </span>
-                                                    <p class="product__short-description">
-                                                        Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra
-                                                    </p>  
-                                                    <div class="d-flex product__list-action">
-                                                        <a href="cart.html" class="btn btn-size-sm">Add To Cart</a>
-                                                        <a href="compare.html" class="action-btn">
-                                                            <i class="fa fa-repeat"></i>
-                                                            <span class="sr-only">Add To Compare</span>
-                                                        </a>
-                                                    </div>                                            
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!----    Category   ---->
-                        <div class="col-xl-3 col-lg-4 order-lg-1">
-                            <aside class="shop-sidebar">
-                                <div class="shop-widget mb--40">
-                                    <h3 class="widget-title mb--25">Category</h3>
-                                    <ul class="widget-list category-list">
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Winter Collection</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Women’s Clothes</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Men’s Clothes</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Kid’s Clothes</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Uncategorized</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">Accessories</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="category-title">New Arrival</span>
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </aside>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Main Content Wrapper Start -->
-
-        
 
         <!-- OffCanvas Menu Start -->
         <aside class="offcanvas-navigation" id="offcanvasnav">
@@ -764,46 +638,8 @@
 
 
 
+        {% endblock %}
 
-
-
-            
-            <!-- Product Area End -->
-
-
-
-            <section class="method-area mb--11pt5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2 class="sr-only">Methods</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 mb-sm--50">
-                            <div class="method-box shipment-method">
-                                <i class="flaticon-truck"></i>
-                                <h3>Free Home Delivery</h3>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-sm--50">
-                            <div class="method-box money-back-method">
-                                <i class="flaticon-money"></i>
-                                <h3>MONEY BACK GUARANTEE</h3>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="method-box support-method">
-                                <i class="flaticon-support"></i>
-                                <h3>SUPORT 24/7</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-{% endblock %}
-    
     </body>
-</html>
+
+</html>    
