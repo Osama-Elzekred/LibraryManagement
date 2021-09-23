@@ -1,6 +1,12 @@
+
+{% extends 'Books/base.html' %}
+
+
+{% load static %}
+{% block part1 %}
+
 <!doctype html>
 <html class="no-js" lang="zxx">
-{% load static %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -28,6 +34,7 @@
 <body>
 
 
+    <!-- ************************* Add NavrBar ************************* -->
 
     
     <!-- Preloader Start -->
@@ -44,7 +51,7 @@
         <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
             <div class="container">
                 <div class="row">
-                    <div class="col-8 text-center mx-auto" style="display:block;width=2em;">
+                    <div class="col-8 text-center mx-auto" style="display:block;width:2em;">
                         <h1 class="page-title">
                             {% block pagetitle %}
                             {% endblock pagetitle %}
@@ -81,8 +88,10 @@
         </div>
         <!-- Main Content Wrapper Start -->
 
-        
+        <!-- ************************* Add Footer ************************* -->
 
+        
+        {% endblock %}
 </body>
 
     <!-- Main Wrapper End -->
