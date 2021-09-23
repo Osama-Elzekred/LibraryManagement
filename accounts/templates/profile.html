@@ -1,8 +1,172 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-        <div>asldfjlasdjfljasdl</div>
-    </body>
+<!doctype html>
+{%load static%}
+{% load crispy_forms_tags %}
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Online Library Management System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+
+
+    <!-- ************************* CSS Files ************************* -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.css' %} ">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'accounts/css/vendor.css' %}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'accounts/css/main.css' %}">
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+
+        <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">My Account</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li class="current"><span>My Account</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner ptb--80 ptb-md--60 pb-sm--55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="user-dashboard-tab flex-column flex-md-row">
+                                <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
+                                    <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Orders</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Downloads</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Addresses</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#accountdetails" aria-controls="accountdetails" aria-selected="true">Account Details</button>
+                               
+                                
+                                
+                                        <!-- Logout link -->
+                                    <a class="nav-link" href="login-register.html">Logout</a>
+                                </div>
+                                <div class="user-dashboard-tab__content tab-content">
+                                    <div class="tab-pane fade show active" id="dashboard">
+                                        <p>Hello <strong>John</strong> (not <strong>John</strong>? <a href="login-register.html">Log out</a>)</p>
+                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a> and <a href="">edit your password and account details</a>.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="orders">
+                                        <div class="message-box mb--30 d-none">
+                                            <p><i class="fa fa-check-circle"></i>No order has been made yet.</p>
+                                            <a href="#">Go Shop</a>
+                                        </div>
+                                        
+                                    </div>
+
+
+
+
+
+
+                                    <div class="tab-pane fade" id="downloads">
+                                        <div class="message-box mb--30 d-none">
+                                            <p><i class="fa fa-exclamation-circle"></i>No downloads available yet.</p>
+                                            <a href="shop.html">Go Shop</a>
+                                        </div>
+                                        
+                                    </div>
+
+
+
+
+
+
+                                    <div class="tab-pane fade" id="addresses">
+                                        <p class="mb--20">The following addresses will be used on the checkout page by default.</p>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h4 class="mb--20">Billing address</h4>
+                                                    <a href="">Edit</a>
+                                                    <p>You have not set up this type of address yet.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-block">
+                                                    <h4 class="mb--20">Shopping address</h4>
+                                                    <a href="">Edit</a>
+                                                    <p>You have not set up this type of address yet.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--user update data form -->
+                                    <div class="tab-pane fade" id="accountdetails">
+                                        <form action="#" class="form form--account">
+                                            {% csrf_token %}
+                                            {{ user_form|crispy }}
+                                            {{ profile_form|crispy }}
+                                             <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form__group">
+                                                        <input type="submit" value="Save Changes" style="display:block;" class="btn mt-3 mx-auto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+
+        <!-- Global Overlay Start -->
+        <div class="global-overlay"></div>
+        <!-- Global Overlay End -->
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- Main Wrapper End -->
+
+    <!-- ************************* JS Files ************************* -->
+
+    <!-- jQuery JS -->
+    <script src="{% static 'accounts/js/vendor.js' %}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'accounts/js/main.js' %}"></script>
+</body>
+
 </html>

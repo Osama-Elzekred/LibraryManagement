@@ -11,6 +11,11 @@ class BookListView(ListView):
     context_object_name = 'Books'
     ordering = ['-created_at']
     
+    def get_context_data(self , **kwargs):
+        context = super(BookListView, self).get_context_data(**kwargs)
+        context['Categories'] = Category.objects.all()
+        return context
+      
 class BookCreateView(CreateView):
     model  = Book
     form_class = BookCreateForm
