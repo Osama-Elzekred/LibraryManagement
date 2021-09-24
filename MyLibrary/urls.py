@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include("accounts.urls", namespace="accounts")),
     path('home/', include('Books.urls', namespace='Books')),
-        path('dashboard_admin/', include('Admin.urls', namespace='admin_dashboard')),
+    path('dashboard_admin/', include('Admin.urls', namespace='Admin')),
     path('category/<str:slug>', category_book_list, name='category_book_list'),
     path('author/<str:slug>', author_book_list, name='author_book_list'),
 

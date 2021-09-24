@@ -72,7 +72,7 @@
                                         </li>
                                         {% if user.is_superuser %}
                                             <li class="mainmenu__item menu-item-has-children position-relative">
-                                                <a href="/accounts/dashboard_admin/" class="mainmenu__link">Admin Dashboard</a>
+                                                <a href="{% url 'Admin:admin_dashboard'%}" class="mainmenu__link">Admin Dashboard</a>
                                                 
                                             </li>
                                         {%endif%}
