@@ -1,0 +1,125 @@
+
+
+{% extends 'Books/base.html' %}
+
+
+{% load static %}
+{% block part1 %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Home </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    </head>
+
+    <body>
+        
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+
+        <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Admin Dashboard </h1>
+                        <ul class="breadcrumb">
+                            <li><a href="/home">Home</a></li>
+                            <li class="current"><span>My Account</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner ptb--80 ptb-md--60 pb-sm--55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="user-dashboard-tab flex-column flex-md-row">
+                                <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
+                                    <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Create Category</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Create Book</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Category List</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#add_author" aria-controls="add_author" aria-selected="true">Add A book Author</button>
+                               
+                                
+                                
+                                        <!-- Logout link -->
+                                    <a class="nav-link" href="/accounts/login">Logout</a>
+                                </div>
+                                <div class="user-dashboard-tab__content tab-content">
+                                    <div class="tab-pane fade show active" id="dashboard">
+                                        <p>Hello <strong>{{user.first_name}}</strong></p>
+                                        <p>From your account dashboard. you can easily Adding Category, List Existing Categories, Adding Books, List Books And Editting Them And More</p>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="orders">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Create Categroy</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/category/create"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+
+                                    <div class="tab-pane fade" id="downloads">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Create Book</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/book/create"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+
+                                    <div class="tab-pane fade" id="addresses">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">Categroy List </h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/category/list"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    <div class="tab-pane fade" id="add_author">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">Add Author </h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="/home/category/list"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+{% endblock %}

@@ -1,5 +1,4 @@
 
-
 {% load static %}
 
 
@@ -71,28 +70,22 @@
                                             <a href="/home" class="mainmenu__link">Home</a>
                                             
                                         </li>
-
-
-                                        <li class="mainmenu__item menu-item-has-children position-static">
-                                            <a href="#" class="mainmenu__link">Shop</a>
-                                        </li> 
-                                        
-                                        
-
-                                        <li class="mainmenu__item menu-item-has-children position-relative">
-                                            <a href="#" class="mainmenu__link">Pages</a>
-                                            
-                                        </li>
+                                        {% if user.is_superuser %}
+                                            <li class="mainmenu__item menu-item-has-children position-relative">
+                                                <a href="/accounts/dashboard_admin/" class="mainmenu__link">Admin Dashboard</a>
+                                                
+                                            </li>
+                                        {%endif%}
 
 
                                         <li class="mainmenu__item menu-item-has-children position-relative">
-                                            <a href="#" class="mainmenu__link">Blog</a>
+                                            <a href="/blog" class="mainmenu__link">Blog</a>
                                     
                                         </li>
 
 
                                         <li class="mainmenu__item">
-                                            <a href="#" class="mainmenu__link">Contact Us</a>
+                                            <a href="{% url 'contact' %}" class="mainmenu__link">Contact Us</a>
                                         </li>
 
 
@@ -100,23 +93,38 @@
                                 </nav>
                             </div>
 
-
-                            <div class="header__col header__right">
-                                <div class="toolbar-item d-none d-lg-block">
-                                    <a href="/accounts/login" class="toolbar-btn">
-                                        <span>Login</span>
-                                    </a>
+                            {% if user.is_authenticated %}
+                                <div class="header__col header__right">
+                                    <div class="toolbar-item d-none d-lg-block">
+                                        <a href="/accounts/profile/" class="toolbar-btn">
+                                            <span>Profile</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="header__col header__right">
-                                <div class="toolbar-item d-none d-lg-block">
-                                    <a href="/accounts/signup" class="toolbar-btn">
-                                        <span>Signup</span>
-                                    </a>
+                                <div class="header__col header__right">
+                                    <div class="toolbar-item d-none d-lg-block">
+                                        <a href="{% url 'logout' %}" class="toolbar-btn">
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            {%else%}
+                                <div class="header__col header__right">
+                                    <div class="toolbar-item d-none d-lg-block">
+                                        <a href="{% url 'login' %}" class="toolbar-btn">
+                                            <span>Login</span>
+                                        </a>
+                                    </div>
+                                </div>
 
+                                <div class="header__col header__right">
+                                    <div class="toolbar-item d-none d-lg-block">
+                                        <a href="/accounts/signup" class="toolbar-btn">
+                                            <span>Signup</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            {%endif%}
                         
 
 
@@ -130,18 +138,26 @@
         <!-- Header End -->
     </div>    
 
+    {% block slider %}
+    {% endblock %}    
+    <!-- ----------------------------------------------------------------------------------------------- -->
+    <!-- Main Content Wrapper Start -->
+    <div  class="main-content-wrapper">
+        <div class="shop-page-wrapper ptb--80">
+            <div class="container">
+                <div class="row">
+                    {% block part1 %}
+                    {% endblock %}
 
-        <!-- ----------------------------------------------------------------------------------------------- -->
+                    {% block part2 %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper Start -->
 
 
-     {% block part1 %}
-
-     {% endblock %}
-
-
-     {% block part2 %}
-
-     {% endblock %}
 
 
 
@@ -173,44 +189,16 @@
 
                     <div class="col footer-column-2 mb-md--33">
                         <div class="footer-widget">
-                            <h3 class="widget-title mb--35 mb-sm--15">Store Menu</h3>
+                            <h3 class="widget-title mb--35 mb-sm--15">BOOK CATEGORIES</h3>
                             <ul class="footer-menu">
-                                <li>
-                                    <a href="shop.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Best Seller</span>
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a href="shop.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>New Arrivals</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Men</span>
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a href="shop.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Women</span>
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a href="shop.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Accessories</span>
-                                    </a>
-                                </li>
+                                {%for category in Categories %}
+                                    <li>
+                                        <a href="/category/{{category.slug}}">
+                                            <span class="category-title">{{category.title}}</span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -230,13 +218,6 @@
                                 </li>
 
 
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Delivery Information</span>
-                                    </a>
-                                </li>
-
 
                                 <li>
                                     <a href="#">
@@ -252,10 +233,9 @@
                                         <span>Terms &amp; Conditions</span>
                                     </a>
                                 </li>
-
-
+                                
                                 <li>
-                                    <a href="#">
+                                    <a href="/home">
                                         <i class="fa fa-angle-right"></i>
                                         <span>Look Books</span>
                                     </a>
@@ -277,21 +257,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="order-tracking.html">
-                                            <i class="fa fa-angle-right"></i>
-                                            <span>Track Order</span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="#">
                                             <i class="fa fa-angle-right"></i>
                                             <span>Support</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="shop.html">
-                                            <i class="fa fa-angle-right"></i>
-                                            <span>Shopping &amp; Delivery</span>
                                         </a>
                                     </li>
                                     <li>
@@ -312,31 +280,15 @@
                             <h3 class="widget-title mb--35 mb-sm--15">My Account</h3>
                             <ul class="footer-menu">
                                 <li>
-                                    <a href="my-account.html">
+                                    <a href="/accounts/profile">
                                         <i class="fa fa-angle-right"></i>
                                         <span>My Account</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="order-tracking.html">
+                                    <a href="/accounts/profile">
                                         <i class="fa fa-angle-right"></i>
-                                        <span>Order Delivery</span>
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a href="wishlist.html">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Wishlist</span>
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-angle-right"></i>
-                                        <span>Newsletter</span>
+                                        <span>Borrowed Books</span>
                                     </a>
                                 </li>
                             </ul>

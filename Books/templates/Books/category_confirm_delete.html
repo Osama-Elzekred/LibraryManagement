@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-{%load bootstrap4%}
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <form method="post" class='form'>
-            {% csrf_token %}
-            <h1> You want to delete this category ??</h1>
-            <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="yes">
-            <a href="{% url 'Books:category_list' %}">Cancel</a>
-        </form>
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "base.html"%}
+{% block part1 %}
+    <form method="post" class='form'>
+        {% csrf_token %}
+        <h1> You want to delete this category ??</h1>
+        <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="yes">
+        <a href="{% url 'Books:category_list' %}">Cancel</a>
+    </form>
+{% endblock %}

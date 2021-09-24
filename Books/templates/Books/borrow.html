@@ -1,0 +1,11 @@
+{% extends "Books/base.html"%}
+{% block part1 %}
+    <form method="post" >
+        {% csrf_token %}
+        <div class="form-group mb-4" style="text-align: center">   
+            <label class="col-sm-2 control-label" style="font-weight: bold;font-size:2em">Return Date</label>
+            <input name="return_date" class="btn btn-primary " type="date">
+        </div>
+        <button typt='submit' class='btn mx-auto mb-4' style='display:block'>Submit</button>
+    </form>
+{% endblock %}

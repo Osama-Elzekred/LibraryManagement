@@ -1,41 +1,7 @@
-<!doctype html>
+{% extends "Books/base.html"%}
 {%load static%}
 {% load crispy_forms_tags %}
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Library Management System</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicons -->
-
-
-    <!-- ************************* CSS Files ************************* -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.css' %} ">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="{% static 'accounts/css/vendor.css' %}">
-
-    <!-- style css -->
-    <link rel="stylesheet" href="{% static 'accounts/css/main.css' %}">
-</head>
-
-<body>
-
-    <!-- Preloader Start -->
-    <div class="ft-preloader active">
-        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
-            <div class="ft-child ft-bounce1"></div>
-            <div class="ft-child ft-bounce2"></div>
-            <div class="ft-child ft-bounce3"></div>
-        </div>
-    </div>
-    <!-- Preloader End -->
-
+{% block slider %}
     <!-- Main Wrapper Start -->
     <div class="wrapper">
 
@@ -44,7 +10,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">My Account</h1>
+                        <h1 class="page-title">{{user.first_name}} {{user.last_name}}</h1>
                         <ul class="breadcrumb">
                             <li><a href="#">Home</a></li>
                             <li class="current"><span>My Account</span></li>
@@ -64,75 +30,173 @@
                             <div class="user-dashboard-tab flex-column flex-md-row">
                                 <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
                                     <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Orders</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Downloads</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Addresses</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Borrowed Books</button>
                                     <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#accountdetails" aria-controls="accountdetails" aria-selected="true">Account Details</button>
                                
                                 
                                 
                                         <!-- Logout link -->
-                                    <a class="nav-link" href="login-register.html">Logout</a>
+                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                                 </div>
                                 <div class="user-dashboard-tab__content tab-content">
                                     <div class="tab-pane fade show active" id="dashboard">
-                                        <p>Hello <strong>John</strong> (not <strong>John</strong>? <a href="login-register.html">Log out</a>)</p>
-                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a> and <a href="">edit your password and account details</a>.</p>
+                                        <p>Hello <strong>{{user.first_name}}</strong> (not <strong>{{user.first_name}}</strong>? <a href="{% url 'logout'%}">Log out</a>)</p>
+                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent borrowed books</a> and <a href="">edit your password and account details</a>.</p>
                                     </div>
+
+
                                     <div class="tab-pane fade" id="orders">
-                                        <div class="message-box mb--30 d-none">
-                                            <p><i class="fa fa-check-circle"></i>No order has been made yet.</p>
-                                            <a href="#">Go Shop</a>
-                                        </div>
-                                        
-                                    </div>
-
-
-
-
-
-
-                                    <div class="tab-pane fade" id="downloads">
-                                        <div class="message-box mb--30 d-none">
-                                            <p><i class="fa fa-exclamation-circle"></i>No downloads available yet.</p>
-                                            <a href="shop.html">Go Shop</a>
-                                        </div>
-                                        
-                                    </div>
-
-
-
-
-
-
-                                    <div class="tab-pane fade" id="addresses">
-                                        <p class="mb--20">The following addresses will be used on the checkout page by default.</p>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-sm--20">
-                                                <div class="text-block">
-                                                    <h4 class="mb--20">Billing address</h4>
-                                                    <a href="">Edit</a>
-                                                    <p>You have not set up this type of address yet.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="text-block">
-                                                    <h4 class="mb--20">Shopping address</h4>
-                                                    <a href="">Edit</a>
-                                                    <p>You have not set up this type of address yet.</p>
+                                        <div class="col-xl-9 col-lg-8 order-lg-2 mb-md--50">
+                                            <div class="shop-products">
+                                                <div class="row">
+                                                    {% if Books|length == 0 %}
+                                                        <h1 class="mx-auto" style="color: red; text-align: center;">You Have Not Borrowed Any Book</h1>
+                                                    {% else %}
+                                                        {% for book in Books %}
+                                                            {%if book.available_number_of_copies != 0 %}
+                                                                <div class="card" style="width: 20rem;">
+                                                                    <img class="card-img-top" src='{{book.image.url}}'alt="Card image cap">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Book Title:{{book.title}}</h5>
+                                                                        <h5 class="card-title">Book Author:{{book.author.name}}</h5>
+                                                                        <h5 class="card-title">Book Description:</h5>
+                                                                        <p class="card-text">{{book.description}}</p>
+                                                                        {% if user.is_authenticated %}
+                                                                            {% if user in book.user.all %}
+                                                                                <button class='btn-primary mx-auto mt-3' style='display: block; border-radius:10px'><a href="return/{{book.slug}}">Return</a></button>
+                                                                            {% else %}
+                                                                                <button class='btn-secondary mx-auto mt-3' style='display: block; border-radius:10px'><a href="borrow/{{book.slug}}">Borrow</a></button>
+                                                                            {% endif %}
+                                                                        {%endif%}
+                                                                    </div>
+                                                                </div>
+                                                            {%endif%}
+                                                        {% endfor %}
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
-
 
                                     <!--user update data form -->
                                     <div class="tab-pane fade" id="accountdetails">
-                                        <form action="#" class="form form--account">
+                                        <form method="post" class="form form--account">
                                             {% csrf_token %}
-                                            {{ user_form|crispy }}
-                                            {{ profile_form|crispy }}
-                                             <div class="row">
+                                            <input type="hidden" name="csrfmiddlewaretoken" value="tq8K6am4pIvfYjTjXix7gHRLoImGjthZEkXujtNvEKv1KcSWOHUv3WeVAXeA40hX">
+                                            <div id="div_id_username" class="form-group"> 
+                                                <label for="id_username" class=" requiredField">
+                                                    Username<span class="asteriskField">*</span> 
+                                                </label> 
+                                                <div class=""> 
+                                                    <input type="text" name="username" maxlength="150" class="textinput textInput form-control" required id="id_username" value="{{user.username}}"> <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small> 
+                                                </div> 
+                                            </div> 
+                                            <div id="div_id_first_name" class="form-group"> 
+                                                <label for="id_first_name" class="">
+                                                    First name
+                                                </label> 
+                                                <div class=""> 
+                                                {% if user.first_name != None%}
+                                                    <input type="text" name="first_name" maxlength="150" class="textinput textInput form-control" id="id_first_name" value="{{user.first_name}}">
+                                                {% else %}
+                                                    <input type="text" name="first_name" maxlength="150" class="textinput textInput form-control" id="id_first_name">
+                                                {% endif %}
+                                                </div> 
+                                            </div>
+                                            <div id="div_id_last_name" class="form-group"> 
+                                                <label for="id_last_name" class="">
+                                                    Last name
+                                                </label> 
+                                                <div class=""> 
+                                                    {% if user.last_name != None %}
+                                                        <input type="text" name="last_name" maxlength="150" class="textinput textInput form-control" id="id_last_name" value="{{user.last_name}}"> 
+                                                    {% else %}
+                                                        <input type="text" name="last_name" maxlength="150" class="textinput textInput form-control" id="id_last_name"> 
+                                                    {% endif %}
+                                                </div> 
+                                            </div> 
+                                            <div id="div_id_email" class="form-group"> 
+                                                <label for="id_email" class="">
+                                                    Email address
+                                                </label> 
+                                                <div class=""> 
+                                                    <input type="email" name="email" maxlength="254" class="emailinput form-control" id="id_email" value="{{user.email}}"> 
+                                                </div> 
+                                            </div>
+
+                                            
+
+                                            <div id="div_id_profile_image" class="form-group">
+                                                <label for="id_profile_image" class="">
+                                                    Profile image
+                                                </label> 
+                                                <div class=""> 
+                                                    {% if profile.profile_image != None %}
+                                                        <small style="color:lightgreen;">{{profile.profile_image.url}}</small><br>
+                                                    {% endif %}
+                                                    <input type="file" name="profile_image" accept="image/*" class="clearablefileinput form-control-file" id="id_profile_image"> 
+                                                </div>
+                                            </div> 
+                                            <div id="div_id_phone_number" class="form-group"> 
+                                                <label for="id_phone_number" class="">
+                                                    Phone number
+                                                </label> 
+                                                <div class="">
+                                                    {% if profile.phone_number != None%}
+                                                        <input type="tel" name="phone_number" maxlength="128" class="textinput textInput form-control" id="id_phone_number" value="{{profile.phone_number}}"> 
+                                                    {% else %}
+                                                        <input type="tel" name="phone_number" maxlength="128" class="textinput textInput form-control" id="id_phone_number"> 
+                                                    {% endif %}
+                                                </div> 
+                                            </div> 
+                                            <div id="div_id_gender" class="form-group"> 
+                                                <label for="id_gender" class=" requiredField">
+                                                    Gender
+                                                    <span class="asteriskField">*</span> 
+                                                </label> 
+                                                <div class=""> 
+                                                    <select name="gender" class="select form-control" required id="id_gender"> 
+                                                    {% if profile.gender == 'M'%}
+                                                        <option value="M">Male</option> 
+                                                        <option value="F">Female</option>
+                                                    {% elif profile.gender == 'F'%}  
+                                                        <option value="F">Female</option>
+                                                        <option value="M">Male</option>
+                                                    {% else %}
+                                                        <option value="" selected>---------</option>
+                                                        <option value="M">Male</option> 
+                                                        <option value="F">Female</option>
+                                                    {% endif %}
+                                                    </select> 
+                                                </div> 
+                                            </div> 
+                                            <div id="div_id_birthday" class="form-group"> 
+                                                <label for="id_birthday" class="">
+                                                    Birthday
+                                                </label>
+                                                <div class=""> 
+                                                    {% if profile.birthday != None %}
+                                                        <input type="text" name="birthday" class="dateinput form-control" id="id_birthday" value="{{profile.birthday}}"> 
+                                                    {% else %}
+                                                        <input type="text" name="birthday" class="dateinput form-control" id="id_birthday"> 
+                                                    {% endif %}
+                                                </div> 
+                                            </div> 
+                                            <div id="div_id_address" class="form-group"> 
+                                                <label for="id_address" class="">
+                                                    Address
+                                                </label> 
+                                                <div class=""> 
+                                                    {% if profile.address != None %}
+                                                        <input type="text" name="address" maxlength="300" class="textinput textInput form-control" id="id_address" value="{{profile.address}}"> 
+                                                    {% else %}
+                                                        <input type="text" name="address" maxlength="300" class="textinput textInput form-control" id="id_address"> 
+                                                    {% endif %}
+                                                </div> 
+                                            </div>
+
+                                            <div class="row">
                                                 <div class="col-12">
                                                     <div class="form__group">
                                                         <input type="submit" value="Save Changes" style="display:block;" class="btn mt-3 mx-auto">
@@ -159,14 +223,4 @@
         <!-- Scroll To Top End -->
     </div>
     <!-- Main Wrapper End -->
-
-    <!-- ************************* JS Files ************************* -->
-
-    <!-- jQuery JS -->
-    <script src="{% static 'accounts/js/vendor.js' %}"></script>
-
-    <!-- Main JS -->
-    <script src="{% static 'accounts/js/main.js' %}"></script>
-</body>
-
-</html>
+{%endblock%}

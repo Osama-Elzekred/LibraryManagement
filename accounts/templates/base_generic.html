@@ -1,10 +1,4 @@
-
-{% extends 'Books/base.html' %}
-
-
 {% load static %}
-{% block part1 %}
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -51,7 +45,7 @@
         <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
             <div class="container">
                 <div class="row">
-                    <div class="col-8 text-center mx-auto" style="display:block;width:2em;">
+                    <div class="col-8 text-center mx-auto" style="display:block;width:100%%;">
                         <h1 class="page-title">
                             {% block pagetitle %}
                             {% endblock pagetitle %}
@@ -90,8 +84,6 @@
 
         <!-- ************************* Add Footer ************************* -->
 
-        
-        {% endblock %}
 </body>
 
     <!-- Main Wrapper End -->

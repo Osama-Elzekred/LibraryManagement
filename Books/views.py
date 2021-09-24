@@ -1,9 +1,10 @@
 from .forms import BookCreateForm, CategoryCreateForm
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Book, Category
+from .models import Author, Book, Category
 from django.views.generic import ListView
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 #Book class views 
 class BookListView(ListView):
@@ -57,6 +58,35 @@ class CategoryDeleteView(DeleteView):
         slug_ = slef.kwargs.get('slug')
         return get_object_or_404(Category, slug=slug_)
 
-def Profile_admin(request):
-    return render(request, "Books/admin_dashboard.html")
+def category_book_list(request, slug):
+    category = Category.objects.filter(slug=slug).first()
+    books = category.category_books.all()
+    category = Category.objects.all()
+    context = {'Books':books, 'Categories':category}
+    return render(request, 'Books/category_books.html', context)
+
+def author_book_list(request, slug):
+    author = get_object_or_404(Author , slug=slug)
+    books = author.author_books.all()
+    categories = Category.objects.all()
+    context = {'Books':books, 'Author':author, 'Categories':categories}
+    return render(request,'Books/author_books.html', context)
+
+def return_book(request, slug):  
+    book = Book.objects.filter(slug=slug).first()
+    user = request.user
+    book.user.remove(user)
+    return redirect(reverse('Books:home'))
+
+def borrow_book(request, slug):
+    if request.method == 'POST':
+        book = Book.objects.filter(slug=slug).first()
+        user = request.user
+        return_date = request.POST.get('return_date')
+        book.user.add(user, through_defaults={'return_date':f'{return_date}'})
+        return redirect(reverse('Books:home'))
+    else:
+        return render(request, "Books/borrow.html")
+
+
 

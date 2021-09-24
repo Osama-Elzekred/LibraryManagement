@@ -1,9 +1,12 @@
+from Books.models import Category
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render 
 from .forms import UserRegisterForm , ProfileRegisterForm , UserUpdateForm , ProfileUpdateForm
 from django.views import View
 from django.urls import reverse
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 class SignUp(View):
 
@@ -23,19 +26,39 @@ class SignUp(View):
         return redirect(reverse('accounts:profile'))
 
 class UpdateData(View):
-    def get (self, request, *args, **kwargs):
-        user_form = UserUpdateForm()
-        profile_form = ProfileUpdateForm()
-        context = {'user_form':user_form, 'profile_form':profile_form}
-        return render(request, 'profile.html', context)
 
     def post(self, request, *args, **kwargs):
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.user_profile)
+        print(request.POST, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            redirect(reverse('accounts:profile'))
+        return redirect(reverse('accounts:profile'))
+    def get (self, request, *args, **kwargs):
+        user_form = UserUpdateForm()
+        profile_form = ProfileUpdateForm()
+        profile = request.user.user_profile
+        books = request.user.user_books.all()
+        categories = Category.objects.all()
+        context = {'user_form':user_form, 'profile_form':profile_form, 'profile':profile, 'Books':books, 'Categories':categories}
+        return render(request, 'profile.html', context)
+
+
+class ContactUs(View):
+    def post (self, request, *args, **kwargs):
+        email = request.POST['email']
+        subject = request.POST['subject']
+        msg = request.POST['message']
+        send_mail (
+            subject,
+            msg,
+            settings.EMAIL_HOST_USER,
+            [email],
+        )
+        return redirect(reverse('contact'))
+    def get (self, request, *args, **kwargs):
+        return render(request, 'contact_us.html')
 
 def sign_up(request):
     if request.method == 'POST':
@@ -51,5 +74,6 @@ def sign_up(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html' , {'form':form})
+
 
 
