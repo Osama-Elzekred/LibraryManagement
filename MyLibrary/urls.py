@@ -20,14 +20,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from accounts.views import ContactUs
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('contact/', ContactUs.as_view(), name='contact'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include("accounts.urls", namespace="accounts")),
     path('home/', include('Books.urls', namespace='Books')),
     path('dashboard_admin/', include('Admin.urls', namespace='Admin')),
+    path('blog/', include('blog.urls', namespace='Blog')),
     path('category/<str:slug>', category_book_list, name='category_book_list'),
     path('author/<str:slug>', author_book_list, name='author_book_list'),
+    path('admin/', admin.site.urls),
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
