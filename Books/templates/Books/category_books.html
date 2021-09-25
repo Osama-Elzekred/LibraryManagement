@@ -27,12 +27,6 @@
                                             tempora Neque porro quisquam est, qui dolorem ipsum</p>
                                     </div>
 
-
-                                    <!-- Link Shop -->
-                                    <div class="slider-content__btn">
-                                        <a href="#" class="btn-link" data-animation="fadeInUp"
-                                            data-duration=".3s" data-delay=".6s">Shop Now</a>
-                                    </div>
                                 </div>
                             </div>
 
@@ -69,15 +63,6 @@
 
 
 
-
-
-
-
-                                        <!-- Link Shop -->
-                                    <div class="slider-content__btn">
-                                        <a href="#" class="btn-link" data-animation="fadeInUp"
-                                            data-duration=".3s" data-delay=".6s">Shop Now</a>
-                                    </div>
                                 </div>
                             </div>
 
@@ -105,7 +90,7 @@
                     {% for book in Books %}
                         {%if book.available_number_of_copies != 0 %}
                             <div class="card" style="width: 25rem;">
-                                <img class="card-img-top" src='{{book.image.url}}'alt="Card image cap">
+                                <img class="card-img-top" src='{{book.image.url}}'alt="Card image cap" width=200 height=200>
                                 <div class="card-body">
                                     <h5 class="card-title">Book Title:</h5>
                                     <p class="card-text">{{book.title}}</p>
@@ -115,14 +100,14 @@
                                     <div class="card" style="width: 20rem;">
                                         <p class="card-text">{{book.description}}</p>
                                     </div>
+                                </div>
                                     {% if user.is_authenticated %}
                                         {% if user in book.user.all %}
-                                            <button class='btn-primary mx-auto mt-3' style='display: block; border-radius:10px'><a href="return/{{book.slug}}">Return</a></button>
+                                            <button class='btn-dark btn-primary mx-auto mb-3' style='display: block; border-radius:10px;  background-color: #c13; border-color: #c13;'><a href="/home/return/{{book.slug}}">Return</a></button>
                                         {% else %}
-                                            <button class='btn-secondary mx-auto mt-3' style='display: block; border-radius:10px;'><a href="borrow/{{book.slug}}">Borrow</a></button>
+                                            <button class='btn-dark btn-secondary mx-auto mb-3' style='display: block; border-radius:10px;'><a href="/home/borrow/{{book.slug}}">Borrow</a></button>
                                         {% endif %}
                                     {%endif%}
-                                </div>
                             </div>
                         {%endif%}
                     {% endfor %}

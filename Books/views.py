@@ -1,14 +1,15 @@
-from .forms import BookCreateForm, CategoryCreateForm
+from django.contrib import messages
+from .forms import BookCreateForm, CategoryCreateForm, BookUpdateForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Author, Book, Category
 from django.views.generic import ListView
 from django.urls import reverse
-from django.contrib.auth.models import User
 
 #Book class views 
 class BookListView(ListView):
     model = Book
+    template_name = 'Books/book_list.html'
     context_object_name = 'Books'
     ordering = ['-created_at']
     
@@ -16,7 +17,31 @@ class BookListView(ListView):
         context = super(BookListView, self).get_context_data(**kwargs)
         context['Categories'] = Category.objects.all()
         return context
-      
+
+class BookUpdateListView(BookListView):
+    template_name = 'Books/book_update_list.html'
+class BookUpdateView(UpdateView):
+    model = Book
+    template_name = 'Books/book_update_form.html'
+    context_object_name = 'form'
+    form_class = BookUpdateForm
+    def post(self, request, *args, **kwargs):
+        book_form = BookUpdateForm(request.POST, request.FILES, instance=self.get_object())
+        if book_form.is_valid():
+            book_form.save()
+            messages.success(request, f'{self.get_object().title} Book has been updated successfully!')
+        else:
+            messages.error(request, 'Invalid Data please try again!')
+        return redirect(reverse('Admin:book_update_list'))
+
+class CategoryBooksUpdateView(BookUpdateListView):
+    template_name = 'Books/category_update_book.html'
+    def get_context_data(self, **kwargs):
+        context = super(CategoryBooksUpdateView, self).get_context_data(**kwargs)
+        category = Category.objects.filter(slug= self.kwargs['slug']).first()
+        context['Books'] = Book.objects.filter(category=category)
+        return context
+
 class BookCreateView(CreateView):
     model  = Book
     form_class = BookCreateForm
@@ -32,11 +57,6 @@ class BookDeleteView(DeleteView):
     def get_object (slef):
         slug_ = slef.kwargs.get('slug')
         return get_object_or_404(Category, id=slug_)
-
-class BookUpdateView(UpdateView):
-    model = Book
-    template_name_suffix = '_update_form'
-    context_object_name = 'book'
 
 #Category class views 
 class CategoryListView(ListView):
@@ -57,6 +77,14 @@ class CategoryDeleteView(DeleteView):
     def get_object (slef):
         slug_ = slef.kwargs.get('slug')
         return get_object_or_404(Category, slug=slug_)
+
+
+#function based views 
+def update_list_view(request):
+    books = Book.objects.all()
+    categories = Category.objects.all()
+    context = {'Books': books, 'Categories':categories}
+    return render(request, 'Books/book_update_list.html',context)
 
 def category_book_list(request, slug):
     category = Category.objects.filter(slug=slug).first()

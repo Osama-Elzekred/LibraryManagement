@@ -1,25 +1,9 @@
 {% extends "Books/base.html" %}
+{%load crispy_forms_tags%}
 {% block part1 %}
-    {% if Books|length == 0 %}
-        <h1 class="mx-auto" style="color: red; text-align: center;">There is no book available now visit us later</h1>
-    {% else %}
-        {% for book in Books %}
-            {%if book.available_number_of_copies != 0 %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{book.image}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{book.title}}</h5>
-                        <p class="card-text">{{book.description}}</p>
-                        {% if user.is_authenticated %}
-                            {% if user in book.user.all %}
-                                <a></a>
-                            {% else %}
-
-                            {% endif %}
-                        {%endif%}
-                    </div>
-                </div>
-            {%endif%}
-        {% endfor %}
-    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class='btn mx-auto mt-3' style='display: block; border-radius:10px;'><a href="{%url 'Admin:book_update_list' %}">Update</a></button>
+    </form>
 {% endblock %}

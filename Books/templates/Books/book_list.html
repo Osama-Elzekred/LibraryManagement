@@ -17,7 +17,7 @@
                                 <div class="slider-content">
                                     <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
                                         <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
-                                            data-duration=".3s" data-delay=".3s">AMAZING PRODUCT!</h3>
+                                            data-duration=".3s" data-delay=".3s">AMAZING BOOKS!</h3>
                                         <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
                                             data-duration=".3s" data-delay=".3s">BACKPACK</h1>
                                         <p class="font-weight-light" data-animation="fadeInUp"
@@ -25,13 +25,6 @@
                                             dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
                                             quia non numquam eius modi
                                             tempora Neque porro quisquam est, qui dolorem ipsum</p>
-                                    </div>
-
-
-                                    <!-- Link Shop -->
-                                    <div class="slider-content__btn">
-                                        <a href="#" class="btn-link" data-animation="fadeInUp"
-                                            data-duration=".3s" data-delay=".6s">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,17 +60,6 @@
                                             tempora Neque porro quisquam est, qui dolorem ipsum</p>
                                     </div>
 
-
-
-
-
-
-
-                                        <!-- Link Shop -->
-                                    <div class="slider-content__btn">
-                                        <a href="#" class="btn-link" data-animation="fadeInUp"
-                                            data-duration=".3s" data-delay=".6s">Shop Now</a>
-                                    </div>
                                 </div>
                             </div>
 
@@ -104,8 +86,8 @@
                 {% else %}
                     {% for book in Books %}
                         {%if book.available_number_of_copies != 0 %}
-                            <div class="card" style="width: 25rem;">
-                                <img class="card-img-top" src='{{book.image.url}}'alt="Card image cap">
+                            <div class="card me-4" style="width: 25rem;">
+                                <img class="card-img-top" src='{{book.image.url}}'alt="Card image cap" width=200 height=200>
                                 <div class="card-body">
                                     <h5 class="card-title">Book Title:</h5>
                                     <p class="card-text">{{book.title}}</p>
@@ -115,14 +97,14 @@
                                     <div class="card" style="width: 20rem;">
                                         <p class="card-text">{{book.description}}</p>
                                     </div>
+                                </div>
                                     {% if user.is_authenticated %}
                                         {% if user in book.user.all %}
-                                            <button class='btn-primary mx-auto mt-3' style='display: block; border-radius:10px'><a href="return/{{book.slug}}">Return</a></button>
+                                            <button class='btn-dark btn-primary mx-auto mb-3' style='display: block; border-radius:10px; background-color: #c13; border-color: #c13;'><a href="return/{{book.slug}}">Return</a></button>
                                         {% else %}
-                                            <button class='btn-secondary mx-auto mt-3' style='display: block; border-radius:10px;'><a href="borrow/{{book.slug}}">Borrow</a></button>
+                                            <button class='btn-dark btn-secondary mx-auto mb-3' style='display: block; border-radius:10px;'><a href="borrow/{{book.slug}}">Borrow</a></button>
                                         {% endif %}
                                     {%endif%}
-                                </div>
                             </div>
                         {%endif%}
                     {% endfor %}

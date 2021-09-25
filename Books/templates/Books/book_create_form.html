@@ -1,40 +1,11 @@
-
 {% extends 'Books/base.html' %}
-
-
+{% load bootstrap4 %}
 {% load static %}
 {% block part1 %}
-
-<!DOCTYPE html>
-{% load bootstrap4 %}
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style>
-            body {
-    text-align: center;
-    
-        }
-    form {
-    display: inline-block;
-    }
-    </style>
-    
-    </head>
-    <body>
-        <form method="post" class="form">
+        <form method="post" class="form" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
             <input type="submit" class="btn btn-primary mx-auto mt-3 mb-3" sytle="display:block" value="Create">
         </form>
-        <script src="" async defer></script>
-
-        {% endblock %}
-
-    </body>
+{% endblock %}
 </html>

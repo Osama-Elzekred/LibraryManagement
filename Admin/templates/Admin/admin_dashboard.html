@@ -14,10 +14,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">Admin Dashboard </h1>
+                        <div class="container" style="text-align:center">
+                            <img class="rounded-circle" src="{{user.user_profile.profile_image.url}}" alt='user profile img' width=200 height=200>
+                        </div>
+                        <h1 class="page-title">Wellcom To Admin Dashboard </h1>
                         <ul class="breadcrumb">
                             <li><a href="/home">Home</a></li>
-                            <li class="current"><span>My Account</span></li>
+                            <li class="current"><span>Admin Dashboard</span></li>
                         </ul>
                     </div>
                 </div>
@@ -34,10 +37,11 @@
                             <div class="user-dashboard-tab flex-column flex-md-row">
                                 <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
                                     <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Create Category</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Create Book</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Category List</button>
-                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#add_author" aria-controls="add_author" aria-selected="true">Add A book Author</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#downloads" aria-controls="downloads" aria-selected="true">Add Book</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#updatebook" aria-controls="updatebook" aria-selected="true">Update Book</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#orders" aria-controls="orders" aria-selected="true">Add Category</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">List Categories </button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#add_author" aria-controls="add_author" aria-selected="true">Add book Author</button>
                                
                                 
                                 
@@ -47,21 +51,9 @@
                                 <div class="user-dashboard-tab__content tab-content">
                                     <div class="tab-pane fade show active" id="dashboard">
                                         <p>Hello <strong>{{user.first_name}}</strong></p>
-                                        <p>From your account dashboard. you can easily Adding Category, List Existing Categories, Adding Books, List Books And Editting Them And More</p>
+                                        <p>From your dashboard. you can easily Adding Category, List Existing Categories, Adding Books, List Books And Editting Them And More</p>
                                     </div>
 
-                                    <div class="tab-pane fade" id="orders">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-sm--20">
-                                                <div class="text-block">
-                                                    <h2 class="mb--20">You can Create Categroy</h2>
-                                                    <p>If you want Click</p>
-                                                    <a href="/home/category/create"> Here</a>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>  
-                                    </div>
 
                                     <div class="tab-pane fade" id="downloads">
                                         <div class="row">
@@ -69,7 +61,35 @@
                                                 <div class="text-block">
                                                     <h2 class="mb--20">You can Create Book</h2>
                                                     <p>If you want Click</p>
-                                                    <a href="/home/book/create"> Here</a>
+                                                    <a href="{% url 'Admin:add_book' %}"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+
+                                    
+                                    <div class="tab-pane fade" id="updatebook">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Update Book</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="{% url 'Admin:book_update_list' %}"> Here</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="orders">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h2 class="mb--20">You can Create Categroy</h2>
+                                                    <p>If you want Click</p>
+                                                    <a href="{% url 'Admin:add_category' %}" class="btn btn"> Here</a>
                                                     
                                                 </div>
                                             </div>
@@ -82,7 +102,7 @@
                                                 <div class="text-block">
                                                     <h2 class="mb--20">Categroy List </h2>
                                                     <p>If you want Click</p>
-                                                    <a href="/home/category/list"> Here</a>
+                                                    <a href="{% url 'Admin:list_categories' %}"> Here</a>
                                                     
                                                 </div>
                                             </div>

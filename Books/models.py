@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 
 class Category(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=150,blank=True,null=True)
     def __str__(self):
         return self.title
@@ -18,7 +18,7 @@ class Category(models.Model):
     # def slug(self):
     #     return slugify(self.title)
 class Author(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length = 200, blank=True, null=True)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -28,7 +28,7 @@ class Author(models.Model):
 
         
 class Book(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, unique=True)
     description = models.TextField()
 
     # I comment it just to save database resources instead of creating a column in the database for slug

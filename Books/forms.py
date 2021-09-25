@@ -7,6 +7,11 @@ class BookCreateForm(forms.ModelForm):
         fields = "__all__"
         exclude = ('created_at','user', 'slug',)
 
+class BookUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = "__all__"
+        exclude = ('created_at','user', 'slug',)
 class CategoryCreateForm(forms.ModelForm):
     class Meta:
         model = Category

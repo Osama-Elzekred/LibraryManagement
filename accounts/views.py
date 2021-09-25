@@ -7,6 +7,7 @@ from django.views import View
 from django.urls import reverse
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib import messages
 # Create your views here.
 class SignUp(View):
 
@@ -26,15 +27,18 @@ class SignUp(View):
         return redirect(reverse('accounts:profile'))
 
 class UpdateData(View):
-
     def post(self, request, *args, **kwargs):
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.user_profile)
-        print(request.POST, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return redirect(reverse('accounts:profile'))
+            messages.success(request, 'Profile Data has been updated successfully!')
+            return redirect(reverse('accounts:profile'))
+        else:
+            messages.error(request, f'Invalid Date, Please Try Again!')
+            return redirect(reverse('accounts:profile'))
     def get (self, request, *args, **kwargs):
         user_form = UserUpdateForm()
         profile_form = ProfileUpdateForm()
@@ -58,7 +62,8 @@ class ContactUs(View):
         )
         return redirect(reverse('contact'))
     def get (self, request, *args, **kwargs):
-        return render(request, 'contact_us.html')
+        categories = Category.objects.all()
+        return render(request, 'contact_us.html',{'Categories':categories})
 
 def sign_up(request):
     if request.method == 'POST':

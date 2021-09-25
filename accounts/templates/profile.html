@@ -10,11 +10,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">{{user.first_name}} {{user.last_name}}</h1>
-                        <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="current"><span>My Account</span></li>
-                        </ul>
+                        <div class="container" style="text-align:center">
+                            <img class="rounded-circle" src="{{user.user_profile.profile_image.url}}" alt='user profile img' width=200 height=200>
+                        </div>
+                        {% if user.first_name|length != 0 and user.last_name|length != 0%}
+                            <h1 class="page-title">{{user.first_name}} {{user.last_name}}</h1>
+                            <ul class="breadcrumb">
+                                <li><a href="/home">Home</a></li>
+                                <li class="current"><span>{{user.first_name}} {{user.last_name}}</span></li>
+                            </ul>
+                        {% else %}
+                            <h1 class="page-title">{{user.username}}</h1>
+                            <ul class="breadcrumb">
+                                <li><a href="/home">Home</a></li>
+                                <li class="current"><span>{{user.username}}</span></li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -36,12 +47,19 @@
                                 
                                 
                                         <!-- Logout link -->
-                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                    <a class="nav-link" href="/accounts/logoutt">Logout</a>
                                 </div>
                                 <div class="user-dashboard-tab__content tab-content">
+                                    {% if messages %}
+                                        <ul class="messages">
+                                            {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
                                     <div class="tab-pane fade show active" id="dashboard">
-                                        <p>Hello <strong>{{user.first_name}}</strong> (not <strong>{{user.first_name}}</strong>? <a href="{% url 'logout'%}">Log out</a>)</p>
-                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent borrowed books</a> and <a href="">edit your password and account details</a>.</p>
+                                        <p>Hello <strong>{{user.first_name}}</strong> (not <strong>{{user.first_name}}</strong>? <a href="{% url 'accounts:logoutt'%}">Log out</a>)</p>
+                                        <p>From your account dashboard. you can easily check &amp; view your recent borrowed books and .edit your password and account details.</p>
                                     </div>
 
 
@@ -63,9 +81,9 @@
                                                                         <p class="card-text">{{book.description}}</p>
                                                                         {% if user.is_authenticated %}
                                                                             {% if user in book.user.all %}
-                                                                                <button class='btn-primary mx-auto mt-3' style='display: block; border-radius:10px'><a href="return/{{book.slug}}">Return</a></button>
+                                                                                <button class='btn-primary mx-auto mt-3' style='display: block; border-radius:10px'><a href="/home/return/{{book.slug}}">Return</a></button>
                                                                             {% else %}
-                                                                                <button class='btn-secondary mx-auto mt-3' style='display: block; border-radius:10px'><a href="borrow/{{book.slug}}">Borrow</a></button>
+                                                                                <button class='btn-secondary mx-auto mt-3' style='display: block; border-radius:10px'><a href="/home/borrow/{{book.slug}}">Borrow</a></button>
                                                                             {% endif %}
                                                                         {%endif%}
                                                                     </div>
@@ -81,9 +99,8 @@
 
                                     <!--user update data form -->
                                     <div class="tab-pane fade" id="accountdetails">
-                                        <form method="post" class="form form--account">
+                                        <form method="post" class="form" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <input type="hidden" name="csrfmiddlewaretoken" value="tq8K6am4pIvfYjTjXix7gHRLoImGjthZEkXujtNvEKv1KcSWOHUv3WeVAXeA40hX">
                                             <div id="div_id_username" class="form-group"> 
                                                 <label for="id_username" class=" requiredField">
                                                     Username<span class="asteriskField">*</span> 
@@ -177,9 +194,9 @@
                                                 </label>
                                                 <div class=""> 
                                                     {% if profile.birthday != None %}
-                                                        <input type="text" name="birthday" class="dateinput form-control" id="id_birthday" value="{{profile.birthday}}"> 
+                                                        <input type="date" name="birthday" class="dateinput form-control" id="id_birthday" value="{{profile.birthday}}"> 
                                                     {% else %}
-                                                        <input type="text" name="birthday" class="dateinput form-control" id="id_birthday"> 
+                                                        <input type="date" name="birthday" class="dateinput form-control" id="id_birthday"> 
                                                     {% endif %}
                                                 </div> 
                                             </div> 
@@ -193,6 +210,12 @@
                                                     {% else %}
                                                         <input type="text" name="address" maxlength="300" class="textinput textInput form-control" id="id_address"> 
                                                     {% endif %}
+                                                </div> 
+                                            </div>
+                                            
+                                            <div id="div_id_change_password" class="form-group"> 
+                                                <div class=""> 
+                                                    <a href="{% url 'password_change' %}">Change Password?</a>
                                                 </div> 
                                             </div>
 

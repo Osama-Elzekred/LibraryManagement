@@ -112,14 +112,14 @@
                                 <h5 class="card-title">Book Author:{{book.author.name}}</h5>
                                 <h5 class="card-title">Book Description:</h5>
                                 <p class="card-text">{{book.description}}</p>
+                            </div>
                                 {% if user.is_authenticated %}
                                     {% if user in book.user.all %}
-                                        <button class='btn-secondary mx-auto' style='display: block; border-radius:10px'><a href="return/{{book.slug}}">Return</a></button>
+                                        <button class='btn-secondary mb-3 mx-auto' style='display: block; border-radius:10px; background-color: #c13; border-color: #c13;'><a href="return/{{book.slug}}">Return</a></button>
                                     {% else %}
-                                        <button class='btn-secondary mx-auto' style='display: block; border-radius:10px'><a href="borrow/{{book.slug}}">Borrow</a></button>
+                                        <button class='btn-secondary mb-3 mx-auto' style='display: block; border-radius:10px'><a href="borrow/{{book.slug}}">Borrow</a></button>
                                     {% endif %}
                                 {%endif%}
-                            </div>
                         </div>
                     {%endif%}
                 {% endfor %}
