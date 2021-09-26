@@ -74,7 +74,7 @@ def sign_up(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            redirect(reverse('accounts:profile'))
+            return redirect(reverse('accounts:profile'))
             
     else:
         form = UserRegisterForm()

@@ -23,7 +23,7 @@ urlpatterns = [
     path('contact/', ContactUs.as_view(), name='contact'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include("accounts.urls", namespace="accounts")),
-    path('home/', include('Books.urls', namespace='Books')),
+    path('', include('Books.urls', namespace='Books')),
     path('dashboard_admin/', include('Admin.urls', namespace='Admin')),
     path('blog/', include('blog.urls', namespace='Blog')),
     path('category/<str:slug>', category_book_list, name='category_book_list'),
